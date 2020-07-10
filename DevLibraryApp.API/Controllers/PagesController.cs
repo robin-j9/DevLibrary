@@ -22,7 +22,7 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPages()
         {
-            var pages = await _context.SavedPages.ToListAsync();
+            var pages = await _context.Pages.ToListAsync();
 
             return Ok(pages);
         }
@@ -31,7 +31,7 @@ namespace DatingApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPage(int id)
         {
-            var page = await _context.SavedPages.FirstOrDefaultAsync(x => x.Id == id);
+            var page = await _context.Pages.FirstOrDefaultAsync(x => x.Id == id);
 
             return Ok(page);
         }
