@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using DevLibraryApp.API.Data;
+using DevLibraryApp.API.Dtos;
 using DevLibraryApp.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,21 +18,24 @@ namespace DevLibraryApp.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(string email, string password) 
+        public async Task<IActionResult> Register(UserToRegisterDto userToRegisterDto) 
         {
             // validate request
 
-            email = email.ToLower();
+            userToRegisterDto.Email = userToRegisterDto.Email.ToLower();
         
-            if (await _repo.UserExists(email))
+            if (await _repo.UserExists(userToRegisterDto.Email))
                 return BadRequest("Email already exists.");
 
             var userToCreate = new User
             {
-                Email = email
+                FirstName = userToRegisterDto.FirstName,
+                LastName = userToRegisterDto.LastName,
+                Username = userToRegisterDto.Username,
+                Email = userToRegisterDto.Email
             };
 
-            var createdUser = await _repo.Register(userToCreate, password);
+            var createdUser = await _repo.Register(userToCreate, userToRegisterDto.Password);
 
             return StatusCode(201);
         }
