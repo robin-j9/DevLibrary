@@ -1,10 +1,10 @@
-<div class="container">
+<div *ngIf="!loginMode || loggedIn" class="container">
   <div class="jumbotron">
     <h1>Your personal web development bookmark library</h1>
   </div>
 </div>
 
-<div class="container">
+<div *ngIf="!loggedIn && loginMode" class="container">
   <div class="row justify-content-center">
     <div class="col-4">
       <app-login></app-login>
