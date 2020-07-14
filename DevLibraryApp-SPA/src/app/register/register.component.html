@@ -28,7 +28,13 @@
     />
   </div>
   <div class="form-group">
-    <input class="form-control" placeholder="Email" type="email" name="email" />
+    <input
+      class="form-control"
+      placeholder="Email"
+      type="email"
+      name="email"
+      [(ngModel)]="model.email"
+    />
   </div>
   <div class="form-group">
     <input
@@ -45,7 +51,7 @@
       placeholder="Confirm Password"
       type="password"
       name="passwordConfirmation"
-      [(ngModel)]="passwordConfirmation"
+      [(ngModel)]="model.passwordConfirmation"
     />
   </div>
   <div class="form-group">
