@@ -18,14 +18,7 @@ export class RegisterComponent implements OnInit {
     if (this.model.password !== this.model.passwordConfirmation) {
       console.log('passwords do not match');
     } else {
-      return this.authService.register(this.model).subscribe(
-        (next) => {
-          console.log('registration successful');
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      this.authService.register(this.model);
     }
   }
 }

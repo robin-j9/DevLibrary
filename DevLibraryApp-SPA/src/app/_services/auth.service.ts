@@ -12,6 +12,9 @@ export class AuthService {
   loginMode = new BehaviorSubject<boolean>(false);
   loggedIn = new BehaviorSubject<boolean>(false);
 
+  registerMode = new BehaviorSubject<boolean>(false);
+  registered = new BehaviorSubject<boolean>(false);
+
   constructor(private http: HttpClient) {}
 
   login(model: any) {
@@ -27,6 +30,16 @@ export class AuthService {
   }
 
   register(model: any) {
-    return this.http.post(this.baseUrl + 'register', model);
+    return this.http.post(this.baseUrl + 'register', model).subscribe(
+      (next) => {
+        this.registered.next(true);
+        this.loginMode.next(true);
+        this.registerMode.next(false);
+        console.log('registration successful');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
