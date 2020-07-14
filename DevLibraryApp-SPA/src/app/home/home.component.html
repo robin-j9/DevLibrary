@@ -1,4 +1,4 @@
-<div *ngIf="!loginMode || loggedIn" class="container">
+<div *ngIf="(!loginMode || loggedIn) && !registerMode" class="container">
   <div class="jumbotron">
     <h1>Your personal web development bookmark library</h1>
   </div>
@@ -8,6 +8,14 @@
   <div class="row justify-content-center">
     <div class="col-4">
       <app-login></app-login>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!registered && registerMode" class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <app-register></app-register>
     </div>
   </div>
 </div>
