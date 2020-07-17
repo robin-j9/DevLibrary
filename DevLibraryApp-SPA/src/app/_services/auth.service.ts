@@ -8,12 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   baseUrl = 'http://localhost:5000/api/auth/';
-
-  loginMode = new BehaviorSubject<boolean>(false);
-  loggedIn = new BehaviorSubject<boolean>(false);
-
-  registerMode = new BehaviorSubject<boolean>(false);
-  registered = new BehaviorSubject<boolean>(false);
+  token: string;
 
   constructor(private http: HttpClient) {}
 
@@ -22,8 +17,8 @@ export class AuthService {
       map((response: any) => {
         const user = response;
         if (user) {
-          this.loggedIn.next(true);
           localStorage.setItem('token', user.token);
+          this.token = user.token;
         }
       })
     );
@@ -32,14 +27,15 @@ export class AuthService {
   register(model: any) {
     return this.http.post(this.baseUrl + 'register', model).subscribe(
       (next) => {
-        this.registered.next(true);
-        this.loginMode.next(true);
-        this.registerMode.next(false);
         console.log('registration successful');
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  loggedIn() {
+    return !!this.token;
   }
 }

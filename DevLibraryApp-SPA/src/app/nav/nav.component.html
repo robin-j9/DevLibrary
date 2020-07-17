@@ -9,24 +9,22 @@
       <a class="nav-link" href="#">Link</a>
     </li>
     <!-- temporary log out link to test functionality -->
-    <li *ngIf="loggedIn" class="nav-item">
+    <li *ngIf="loggedIn()" class="nav-item">
       <a class="nav-link" href="#" (click)="logout()">Log Out</a>
     </li>
   </ul>
   <form class="form-inline mt-2 mt-md-0">
     <button
-      *ngIf="!loggedIn"
+      *ngIf="!loggedIn()"
       class="btn btn-outline-success my-2 my-sm-0 mr-2"
       type="submit"
-      (click)="showLogin()"
     >
       Log In
     </button>
     <button
-      *ngIf="!loggedIn"
+      *ngIf="!loggedIn()"
       class="btn btn-outline-primary my-2 my-sm-0"
       type="submit"
-      (click)="showRegister()"
     >
       Register
     </button>
