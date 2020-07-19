@@ -25,14 +25,7 @@ export class AuthService {
   }
 
   register(model: any) {
-    return this.http.post(this.baseUrl + 'register', model).subscribe(
-      (next) => {
-        console.log('registration successful');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    return this.http.post(this.baseUrl + 'register', model);
   }
 
   loggedIn() {

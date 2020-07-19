@@ -15,10 +15,13 @@ export class RegisterComponent implements OnInit {
 
   register() {
     console.log('registration submitted');
-    if (this.model.password !== this.model.passwordConfirmation) {
-      console.log('passwords do not match');
-    } else {
-      this.authService.register(this.model);
-    }
+    this.authService.register(this.model).subscribe(
+      (next) => {
+        console.log('Registration successful');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

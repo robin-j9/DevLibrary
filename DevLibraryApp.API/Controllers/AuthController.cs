@@ -51,8 +51,6 @@ namespace DevLibraryApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserToLoginDto userToLoginDto)
         {
-            throw new Exception("Computer says no!");
-
             var userFromRepo = await _repo.Login(userToLoginDto.Email.ToLower(), userToLoginDto.Password);
 
             if (userFromRepo == null) return Unauthorized();
