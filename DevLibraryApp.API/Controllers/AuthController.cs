@@ -51,6 +51,8 @@ namespace DevLibraryApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserToLoginDto userToLoginDto)
         {
+            throw new Exception("Computer says no!");
+
             var userFromRepo = await _repo.Login(userToLoginDto.Email.ToLower(), userToLoginDto.Password);
 
             if (userFromRepo == null) return Unauthorized();
@@ -77,7 +79,8 @@ namespace DevLibraryApp.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new {
+            return Ok(new
+            {
                 token = tokenHandler.WriteToken(token)
             });
 
