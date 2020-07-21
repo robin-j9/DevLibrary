@@ -13,7 +13,7 @@
       <a class="nav-link" href="#" (click)="logout()">Log Out</a>
     </li>
   </ul>
-  <form class="form-inline mt-2 mt-md-0">
+  <ul class="navbar-nav">
     <button
       *ngIf="!loggedIn()"
       class="btn btn-outline-success my-2 my-sm-0 mr-2"
@@ -28,5 +28,14 @@
     >
       Register
     </button>
-  </form>
+    <div *ngIf="loggedIn()" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#"
+        >{{ authService.decodedToken.unique_name }}
+      </a>
+      <div class="dropdown-menu">
+        <a href="" class="dropdown-item">Account</a>
+        <a href="" class="dropdown-item">Log Out</a>
+      </div>
+    </div>
+  </ul>
 </nav>
