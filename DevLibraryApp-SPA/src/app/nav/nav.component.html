@@ -1,32 +1,40 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  <a class="navbar-brand" href="#">DevLibrary</a>
+  <div class="container">
+    <a class="navbar-brand" href="#">DevLibrary</a>
 
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <!-- temporary log out link to test functionality -->
-    <li *ngIf="loggedIn()" class="nav-item">
-      <a class="nav-link" href="#" (click)="logout()">Log Out</a>
-    </li>
-  </ul>
-  <form class="form-inline mt-2 mt-md-0">
-    <button
-      *ngIf="!loggedIn()"
-      class="btn btn-outline-success my-2 my-sm-0 mr-2"
-      type="submit"
-    >
-      Log In
-    </button>
-    <button
-      *ngIf="!loggedIn()"
-      class="btn btn-outline-primary my-2 my-sm-0"
-      type="submit"
-    >
-      Register
-    </button>
-  </form>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <button
+        *ngIf="!loggedIn()"
+        class="btn btn-outline-success my-2 my-sm-0 mr-2"
+        type="submit"
+      >
+        Log In
+      </button>
+      <button
+        *ngIf="!loggedIn()"
+        class="btn btn-outline-primary my-2 my-sm-0"
+        type="submit"
+      >
+        Register
+      </button>
+      <div *ngIf="loggedIn()" class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle" dropdownToggle
+          >{{ authService.decodedToken.unique_name }}
+        </a>
+        <div class="dropdown-menu mt-2" *dropdownMenu>
+          <a href="" class="dropdown-item">Account</a>
+          <a class="dropdown-item" (click)="logout()">Log Out</a>
+        </div>
+      </div>
+    </ul>
+  </div>
 </nav>
