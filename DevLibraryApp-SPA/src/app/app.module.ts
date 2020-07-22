@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
@@ -12,6 +13,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { CategoriesComponent } from './categories/categories.component';
+import { TagsComponent } from './tags/tags.component';
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,8 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    CategoriesComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +34,7 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
     FormsModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [ErrorInterceptorProvider],
   bootstrap: [AppComponent],
